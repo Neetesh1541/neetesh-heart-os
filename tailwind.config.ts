@@ -26,7 +26,8 @@ export default {
 				foreground: 'hsl(var(--foreground))',
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
-					foreground: 'hsl(var(--primary-foreground))'
+					foreground: 'hsl(var(--primary-foreground))',
+					glow: 'hsl(var(--primary-glow))'
 				},
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
@@ -51,6 +52,19 @@ export default {
 				card: {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
+				},
+				terminal: {
+					bg: 'hsl(var(--terminal-bg))',
+					text: 'hsl(var(--terminal-text))',
+					prompt: 'hsl(var(--terminal-prompt))'
+				},
+				taskbar: {
+					DEFAULT: 'hsl(var(--taskbar))',
+					foreground: 'hsl(var(--taskbar-foreground))'
+				},
+				window: {
+					header: 'hsl(var(--window-header))',
+					border: 'hsl(var(--window-border))'
 				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
