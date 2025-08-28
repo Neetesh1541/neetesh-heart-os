@@ -3,27 +3,53 @@ import { Taskbar } from './Taskbar';
 import { Terminal } from './Terminal';
 import { FileExplorer } from './FileExplorer';
 import { AboutDialog } from './AboutDialog';
-import { Heart, Folder, Monitor, Star } from 'lucide-react';
+import { Calculator } from './Calculator';
+import { TextEditor } from './TextEditor';
+import { Paint } from './Paint';
+import { TaskManager } from './TaskManager';
+import { SystemSettings } from './SystemSettings';
+import { ClockWidget } from './ClockWidget';
+import { Heart, Folder, Monitor, Star, Calculator as CalcIcon, FileText, Palette, Activity, Settings, Clock } from 'lucide-react';
 
 export const Desktop: React.FC = () => {
   const [openWindows, setOpenWindows] = useState<{
     terminal: boolean;
     fileExplorer: boolean;
     about: boolean;
+    calculator: boolean;
+    textEditor: boolean;
+    paint: boolean;
+    taskManager: boolean;
+    systemSettings: boolean;
   }>({
     terminal: false,
     fileExplorer: false,
-    about: false
+    about: false,
+    calculator: false,
+    textEditor: false,
+    paint: false,
+    taskManager: false,
+    systemSettings: false
   });
 
   const [minimizedWindows, setMinimizedWindows] = useState<{
     terminal: boolean;
     fileExplorer: boolean;
     about: boolean;
+    calculator: boolean;
+    textEditor: boolean;
+    paint: boolean;
+    taskManager: boolean;
+    systemSettings: boolean;
   }>({
     terminal: false,
     fileExplorer: false,
-    about: false
+    about: false,
+    calculator: false,
+    textEditor: false,
+    paint: false,
+    taskManager: false,
+    systemSettings: false
   });
 
   const openWindow = (window: keyof typeof openWindows) => {
@@ -108,7 +134,73 @@ export const Desktop: React.FC = () => {
             About Me
           </span>
         </div>
+        
+        <div 
+          className="flex flex-col items-center space-y-2 cursor-pointer hover:scale-110 transition-transform duration-200"
+          onClick={() => openWindow('calculator')}
+        >
+          <div className="p-4 bg-card/80 rounded-2xl glow-border">
+            <CalcIcon className="w-8 h-8 text-primary" />
+          </div>
+          <span className="text-xs text-center text-muted-foreground font-medium">
+            Calculator
+          </span>
+        </div>
+
+        <div 
+          className="flex flex-col items-center space-y-2 cursor-pointer hover:scale-110 transition-transform duration-200"
+          onClick={() => openWindow('textEditor')}
+        >
+          <div className="p-4 bg-card/80 rounded-2xl glow-border">
+            <FileText className="w-8 h-8 text-primary" />
+          </div>
+          <span className="text-xs text-center text-muted-foreground font-medium">
+            Notepad
+          </span>
+        </div>
       </div>
+      
+      {/* Right Side Desktop Icons */}
+      <div className="absolute top-8 right-8 space-y-6 z-10">
+        <div 
+          className="flex flex-col items-center space-y-2 cursor-pointer hover:scale-110 transition-transform duration-200"
+          onClick={() => openWindow('paint')}
+        >
+          <div className="p-4 bg-card/80 rounded-2xl glow-border">
+            <Palette className="w-8 h-8 text-primary" />
+          </div>
+          <span className="text-xs text-center text-muted-foreground font-medium">
+            Paint
+          </span>
+        </div>
+
+        <div 
+          className="flex flex-col items-center space-y-2 cursor-pointer hover:scale-110 transition-transform duration-200"
+          onClick={() => openWindow('taskManager')}
+        >
+          <div className="p-4 bg-card/80 rounded-2xl glow-border">
+            <Activity className="w-8 h-8 text-primary" />
+          </div>
+          <span className="text-xs text-center text-muted-foreground font-medium">
+            Task Manager
+          </span>
+        </div>
+
+        <div 
+          className="flex flex-col items-center space-y-2 cursor-pointer hover:scale-110 transition-transform duration-200"
+          onClick={() => openWindow('systemSettings')}
+        >
+          <div className="p-4 bg-card/80 rounded-2xl glow-border">
+            <Settings className="w-8 h-8 text-primary" />
+          </div>
+          <span className="text-xs text-center text-muted-foreground font-medium">
+            Settings
+          </span>
+        </div>
+      </div>
+
+      {/* Clock Widget */}
+      <ClockWidget />
 
       {/* Welcome Message */}
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center z-5">
@@ -145,6 +237,46 @@ export const Desktop: React.FC = () => {
           onClose={() => closeWindow('about')}
           isMinimized={minimizedWindows.about}
           onToggleMinimize={() => toggleMinimize('about')}
+        />
+      )}
+
+      {openWindows.calculator && (
+        <Calculator 
+          onClose={() => closeWindow('calculator')}
+          isMinimized={minimizedWindows.calculator}
+          onToggleMinimize={() => toggleMinimize('calculator')}
+        />
+      )}
+
+      {openWindows.textEditor && (
+        <TextEditor 
+          onClose={() => closeWindow('textEditor')}
+          isMinimized={minimizedWindows.textEditor}
+          onToggleMinimize={() => toggleMinimize('textEditor')}
+        />
+      )}
+
+      {openWindows.paint && (
+        <Paint 
+          onClose={() => closeWindow('paint')}
+          isMinimized={minimizedWindows.paint}
+          onToggleMinimize={() => toggleMinimize('paint')}
+        />
+      )}
+
+      {openWindows.taskManager && (
+        <TaskManager 
+          onClose={() => closeWindow('taskManager')}
+          isMinimized={minimizedWindows.taskManager}
+          onToggleMinimize={() => toggleMinimize('taskManager')}
+        />
+      )}
+
+      {openWindows.systemSettings && (
+        <SystemSettings 
+          onClose={() => closeWindow('systemSettings')}
+          isMinimized={minimizedWindows.systemSettings}
+          onToggleMinimize={() => toggleMinimize('systemSettings')}
         />
       )}
 

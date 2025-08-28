@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Heart, Monitor, Folder, User, Menu, Search, Clock } from 'lucide-react';
+import { Heart, Monitor, Folder, User, Menu, Search, Clock, Calculator, FileText, Palette, Activity, Settings } from 'lucide-react';
 import { StartMenu } from './StartMenu';
 
 interface TaskbarProps {
@@ -7,11 +7,21 @@ interface TaskbarProps {
     terminal: boolean;
     fileExplorer: boolean;
     about: boolean;
+    calculator: boolean;
+    textEditor: boolean;
+    paint: boolean;
+    taskManager: boolean;
+    systemSettings: boolean;
   };
   minimizedWindows: {
     terminal: boolean;
     fileExplorer: boolean;
     about: boolean;
+    calculator: boolean;
+    textEditor: boolean;
+    paint: boolean;
+    taskManager: boolean;
+    systemSettings: boolean;
   };
   onOpenWindow: (window: keyof TaskbarProps['openWindows']) => void;
   onToggleMinimize: (window: keyof TaskbarProps['minimizedWindows']) => void;
@@ -106,6 +116,76 @@ export const Taskbar: React.FC<TaskbarProps> = ({
                 }`}
               >
                 <User className="w-5 h-5 text-primary" />
+              </button>
+            )}
+
+            {/* Calculator */}
+            {openWindows.calculator && (
+              <button
+                onClick={() => onToggleMinimize('calculator')}
+                className={`p-2 rounded-lg transition-colors ${
+                  minimizedWindows.calculator 
+                    ? 'bg-muted/50 hover:bg-muted/70' 
+                    : 'bg-primary/20 hover:bg-primary/30 glow-border'
+                }`}
+              >
+                <Calculator className="w-5 h-5 text-primary" />
+              </button>
+            )}
+
+            {/* Text Editor */}
+            {openWindows.textEditor && (
+              <button
+                onClick={() => onToggleMinimize('textEditor')}
+                className={`p-2 rounded-lg transition-colors ${
+                  minimizedWindows.textEditor 
+                    ? 'bg-muted/50 hover:bg-muted/70' 
+                    : 'bg-primary/20 hover:bg-primary/30 glow-border'
+                }`}
+              >
+                <FileText className="w-5 h-5 text-primary" />
+              </button>
+            )}
+
+            {/* Paint */}
+            {openWindows.paint && (
+              <button
+                onClick={() => onToggleMinimize('paint')}
+                className={`p-2 rounded-lg transition-colors ${
+                  minimizedWindows.paint 
+                    ? 'bg-muted/50 hover:bg-muted/70' 
+                    : 'bg-primary/20 hover:bg-primary/30 glow-border'
+                }`}
+              >
+                <Palette className="w-5 h-5 text-primary" />
+              </button>
+            )}
+
+            {/* Task Manager */}
+            {openWindows.taskManager && (
+              <button
+                onClick={() => onToggleMinimize('taskManager')}
+                className={`p-2 rounded-lg transition-colors ${
+                  minimizedWindows.taskManager 
+                    ? 'bg-muted/50 hover:bg-muted/70' 
+                    : 'bg-primary/20 hover:bg-primary/30 glow-border'
+                }`}
+              >
+                <Activity className="w-5 h-5 text-primary" />
+              </button>
+            )}
+
+            {/* System Settings */}
+            {openWindows.systemSettings && (
+              <button
+                onClick={() => onToggleMinimize('systemSettings')}
+                className={`p-2 rounded-lg transition-colors ${
+                  minimizedWindows.systemSettings 
+                    ? 'bg-muted/50 hover:bg-muted/70' 
+                    : 'bg-primary/20 hover:bg-primary/30 glow-border'
+                }`}
+              >
+                <Settings className="w-5 h-5 text-primary" />
               </button>
             )}
 

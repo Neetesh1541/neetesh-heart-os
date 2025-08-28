@@ -1,14 +1,14 @@
 import React from 'react';
-import { Heart, Monitor, Folder, User, Settings, Power, Search, Star, Code, Image } from 'lucide-react';
+import { Heart, Monitor, Folder, User, Settings, Power, Search, Star, Code, Image, Calculator, FileText, Palette, Activity } from 'lucide-react';
 
 interface StartMenuProps {
   onClose: () => void;
-  onOpenWindow: (window: 'terminal' | 'fileExplorer' | 'about') => void;
+  onOpenWindow: (window: 'terminal' | 'fileExplorer' | 'about' | 'calculator' | 'textEditor' | 'paint' | 'taskManager' | 'systemSettings') => void;
 }
 
 export const StartMenu: React.FC<StartMenuProps> = ({ onClose, onOpenWindow }) => {
   
-  const handleAppClick = (app: 'terminal' | 'fileExplorer' | 'about') => {
+  const handleAppClick = (app: 'terminal' | 'fileExplorer' | 'about' | 'calculator' | 'textEditor' | 'paint' | 'taskManager' | 'systemSettings') => {
     onOpenWindow(app);
     onClose();
   };
@@ -97,6 +97,58 @@ export const StartMenu: React.FC<StartMenuProps> = ({ onClose, onOpenWindow }) =
               </div>
             </button>
 
+            <button
+              onClick={() => handleAppClick('calculator')}
+              className="w-full flex items-center space-x-3 p-3 hover:bg-muted/50 rounded-lg transition-colors text-left"
+            >
+              <div className="w-8 h-8 bg-blue-500/20 rounded-lg flex items-center justify-center">
+                <Calculator className="w-4 h-4 text-blue-500" />
+              </div>
+              <div>
+                <p className="text-sm font-medium">Calculator</p>
+                <p className="text-xs text-muted-foreground">Perform calculations</p>
+              </div>
+            </button>
+
+            <button
+              onClick={() => handleAppClick('textEditor')}
+              className="w-full flex items-center space-x-3 p-3 hover:bg-muted/50 rounded-lg transition-colors text-left"
+            >
+              <div className="w-8 h-8 bg-green-500/20 rounded-lg flex items-center justify-center">
+                <FileText className="w-4 h-4 text-green-500" />
+              </div>
+              <div>
+                <p className="text-sm font-medium">Notepad</p>
+                <p className="text-xs text-muted-foreground">Text editor</p>
+              </div>
+            </button>
+
+            <button
+              onClick={() => handleAppClick('paint')}
+              className="w-full flex items-center space-x-3 p-3 hover:bg-muted/50 rounded-lg transition-colors text-left"
+            >
+              <div className="w-8 h-8 bg-purple-500/20 rounded-lg flex items-center justify-center">
+                <Palette className="w-4 h-4 text-purple-500" />
+              </div>
+              <div>
+                <p className="text-sm font-medium">Paint</p>
+                <p className="text-xs text-muted-foreground">Drawing application</p>
+              </div>
+            </button>
+
+            <button
+              onClick={() => handleAppClick('taskManager')}
+              className="w-full flex items-center space-x-3 p-3 hover:bg-muted/50 rounded-lg transition-colors text-left"
+            >
+              <div className="w-8 h-8 bg-orange-500/20 rounded-lg flex items-center justify-center">
+                <Activity className="w-4 h-4 text-orange-500" />
+              </div>
+              <div>
+                <p className="text-sm font-medium">Task Manager</p>
+                <p className="text-xs text-muted-foreground">Monitor system processes</p>
+              </div>
+            </button>
+
             {/* Divider */}
             <div className="my-3 border-t border-border"></div>
 
@@ -128,7 +180,10 @@ export const StartMenu: React.FC<StartMenuProps> = ({ onClose, onOpenWindow }) =
         <div className="p-4 border-t border-border bg-muted/30">
           <div className="flex items-center justify-between">
             
-            <button className="flex items-center space-x-2 px-3 py-2 hover:bg-muted/50 rounded-lg transition-colors text-sm">
+            <button 
+              onClick={() => handleAppClick('systemSettings')}
+              className="flex items-center space-x-2 px-3 py-2 hover:bg-muted/50 rounded-lg transition-colors text-sm"
+            >
               <Settings className="w-4 h-4" />
               <span>Settings</span>
             </button>
